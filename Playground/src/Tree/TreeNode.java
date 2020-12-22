@@ -34,8 +34,8 @@ public class TreeNode {
     }
 
     //DFS
-    //InOrder (Left, Root, Right)
     // PreOrder (Root, Left, Right)
+    // InOrder (Left, Root, Right)
     // PostOrder (Left, Right, Root)
     public void traverseInOrder(){
         if (leftChild!=null)
@@ -113,12 +113,12 @@ public class TreeNode {
         }
     }
 
-    public int height(TreeNode root){
+    public int heightRecursive(TreeNode root){
         if (root == null)
             return -1;
 
-        int leftHeight = height(root.leftChild);
-        int rightHeight = height(root.rightChild);
+        int leftHeight = heightRecursive(root.leftChild);
+        int rightHeight = heightRecursive(root.rightChild);
 
         return Math.max(leftHeight, rightHeight) + 1;
     }

@@ -53,8 +53,8 @@ public class Tree {
         root.printLevelOrder(root);
     }
 
-    public int height(){
-        return root.height(root);
+    public int heightRecursive(){
+        return root.heightRecursive(root);
     }
 
     public int heightIterative(){

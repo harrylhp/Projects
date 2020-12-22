@@ -37,7 +37,7 @@ public class MainTree {
         tree.printLevelOrder();
 
         System.out.println();
-        System.out.println("Height of the Tree: " + tree.height());
+        System.out.println("Height of the Tree: " + tree.heightRecursive());
 
         System.out.println();
         System.out.println("Height of the Tree(Iterative) : " + tree.heightIterative());
