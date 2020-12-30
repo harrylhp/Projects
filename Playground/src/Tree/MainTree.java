@@ -12,18 +12,35 @@ public class MainTree {
         tree.insert(30);
         tree.insert(29);
         tree.insert(32);
+        tree.insert(23);
 
-        System.out.println("Traverse In Order ");
-        tree.traverseInOrder();
-
-        System.out.println();
-        System.out.println("Traverse Pre Order ");
+        System.out.println("Traverse Pre Order (Recursion)");
         tree.traversePreOrder();
-
         System.out.println();
-        System.out.println("Traverse Post Order ");
-        tree.traversePostOrder();
 
+        System.out.println("Traverse In Order (Recursion) ");
+        tree.traverseInOrder();
+        System.out.println();
+
+        System.out.println("Traverse Post Order (Recursion)");
+        tree.traversePostOrder();
+        System.out.println();
+
+        System.out.println("-----------------------------------");
+        System.out.println("Traverse Pre Order (Iterative Way)");
+        tree.traversePreOrderIterative();
+        System.out.println();
+
+        System.out.println("Traverse In Order (Iterative Way)");
+        tree.traverseInOrderIterative();
+        System.out.println();
+
+        System.out.println("Traverse Post Order One Stack (Iterative Way)");
+        tree.traversePostOrderIterativeOneStack();
+        System.out.println();
+
+        System.out.println("Traverse Post Order Two Stack (Iterative Way)");
+        tree.traversePostOrderIterativeTwoStack();
         System.out.println();
         /*
         System.out.println("Node is " + tree.get(26).getData());
@@ -33,6 +50,7 @@ public class MainTree {
         System.out.println("Max is " + tree.max());
         */
 
+        System.out.println("-----------------------------------");
         System.out.println("Traverse Level Order");
         tree.printLevelOrder();
 
@@ -41,5 +59,9 @@ public class MainTree {
 
         System.out.println();
         System.out.println("Height of the Tree(Iterative) : " + tree.heightIterative());
+
+        tree.delete(20);
+        tree.printLevelOrder();
+        System.out.println();
     }
 }

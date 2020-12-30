@@ -27,16 +27,21 @@ public class TreeNode {
                 rightChild.insert(value);
     }
 
-    //BFS
-    //In level tree
-    public void traverseLevelOrder(){
+    // DFS - Recursive Way
+    // PreOrder (Root, Left, Right)
+    // InOrder (Left, Root, Right) , it will make the binary tree in ascending order
+    // PostOrder (Left, Right, Root)
+    public void traversePreOrder(){
+        System.out.print(data + ", ");
+
+        if (leftChild!=null)
+            leftChild.traversePreOrder();
+
+        if (rightChild!=null)
+            rightChild.traversePreOrder();
 
     }
 
-    //DFS
-    // PreOrder (Root, Left, Right)
-    // InOrder (Left, Root, Right)
-    // PostOrder (Left, Right, Root)
     public void traverseInOrder(){
         if (leftChild!=null)
             leftChild.traverseInOrder();
@@ -46,14 +51,107 @@ public class TreeNode {
             rightChild.traverseInOrder();
     }
 
-    public void traversePreOrder(){
-        System.out.print(data + ", ");
-
+    public void traversePostOrder(){
         if (leftChild!=null)
-            leftChild.traversePreOrder();
+            leftChild.traversePostOrder();
 
         if (rightChild!=null)
-            rightChild.traversePreOrder();
+            rightChild.traversePostOrder();
+
+        System.out.print(data + ", ");
+
+    }
+
+    // DFS - Iteratively Way
+    // PreOrder - Easy with Stack
+    // InOrder -
+    // PostOrder -
+    public void traversePreOrderIterative(TreeNode root){
+        LinkedList<TreeNode> stack = new LinkedList<TreeNode>();
+        stack.push(root);
+        while (!stack.isEmpty()){
+            TreeNode removedNode = stack.pop();
+            System.out.print(removedNode.data + ", ");
+
+            // As last in first out, to print root -> left -> right. We push the right->left
+            if (removedNode.rightChild !=null) {
+                stack.push(removedNode.rightChild);
+            }
+
+            if (removedNode.leftChild !=null) {
+                stack.push(removedNode.leftChild);
+            }
+        }
+    }
+
+    public void traverseInOrderIterative(TreeNode root){
+        LinkedList<TreeNode> stack = new LinkedList<TreeNode>();
+        TreeNode current = root;
+        stack.push(root);
+        while (!stack.isEmpty()){
+            while (current.leftChild!=null){
+                stack.push(current.leftChild);
+                current = current.leftChild;
+            }
+            current = stack.pop();
+            System.out.print(current.data + ", ");
+
+            if(current.rightChild!=null) {
+                stack.push(current.rightChild);
+                current = current.rightChild;
+            }
+        }
+    }
+
+    // PostOrder 1 stack => hard to understand
+    public void traversePostOrderIterativeOneStack(TreeNode root){
+        LinkedList<TreeNode> stack = new LinkedList<TreeNode>();
+        stack.push(root);
+        boolean isLeaf;
+        TreeNode lastPrintedNode = root;
+
+        while (!stack.isEmpty()){
+            TreeNode current = stack.pop();
+            isLeaf = current.leftChild == null && current.rightChild == null;
+            // Logic
+            // We only print the node starting from leftChild as long as it's a leaf node
+            // Then we proceed to print the rightChild
+            // The tricky part is the parent node, when we need to print it, as long as it has the left or right child as previous printed node =>print it
+            if (isLeaf || lastPrintedNode == current.rightChild || lastPrintedNode == current.leftChild) {
+                System.out.print(current.data + ", ");
+                lastPrintedNode = current;
+            } else {
+                stack.push(current);
+                if (current.rightChild != null) {
+                    stack.push(current.rightChild);
+                }
+                if (current.leftChild != null) {
+                    stack.push(current.leftChild);
+                }
+            }
+
+        }
+    }
+
+    // PostOrder 1 stack => hard to understand
+    public void traversePostOrderIterativeTwoStack(TreeNode root){
+        LinkedList<TreeNode> stack = new LinkedList<TreeNode>();
+        stack.push(root);
+
+        LinkedList<TreeNode> output = new LinkedList<TreeNode>();
+        while(!stack.isEmpty()){
+            TreeNode current = stack.pop();
+            output.push(current);
+
+            if (current.leftChild!=null)
+                stack.push(current.leftChild);
+
+            if (current.rightChild!=null)
+                stack.push(current.rightChild);
+        }
+
+        while(!output.isEmpty())
+            System.out.print(output.pop().data + ", ");
 
     }
 
@@ -86,18 +184,8 @@ public class TreeNode {
             return leftChild.min();
     }
 
-    public void traversePostOrder(){
-        if (leftChild!=null)
-            leftChild.traversePostOrder();
-
-        if (rightChild!=null)
-            rightChild.traversePostOrder();
-
-        System.out.print(data + ", ");
-
-    }
-
-
+    //BFS - Iterative Way (BFS uses always queue)
+    //In level tree
     public void printLevelOrder(TreeNode root) {
         Queue<TreeNode> queue = new LinkedList<TreeNode>();
         queue.add(root);
@@ -123,6 +211,7 @@ public class TreeNode {
         return Math.max(leftHeight, rightHeight) + 1;
     }
 
+    // It's quite similar with the printLevelOrder, just add in the size & height
     public int heightIterative(TreeNode root){
         if (root == null)
             return -1;
@@ -159,9 +248,7 @@ public class TreeNode {
         return data;
     }
 
-    public void setData(int data) {
-        this.data = data;
-    }
+    public void setData(int data) { this.data = data; }
 
     public void setLeftChild(TreeNode leftChild) {
         this.leftChild = leftChild;

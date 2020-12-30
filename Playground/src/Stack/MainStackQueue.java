@@ -1,11 +1,11 @@
 package Stack;
 
+import com.sun.prism.impl.QueuedPixelSource;
+
 import java.util.LinkedList;
 import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.Stack;
-import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class MainStackQueue {
     public static void main(String[] args) {
@@ -22,7 +22,7 @@ public class MainStackQueue {
     }
 
     public static boolean checkForPalindrome(String string) {
-        Stack<Character> stack = new Stack<>();
+        LinkedList<Character> stack = new LinkedList<>();
         LinkedList<Character> queue = new LinkedList<>();
         String lowerCaseStr = string.toLowerCase();
 
