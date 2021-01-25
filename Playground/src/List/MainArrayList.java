@@ -1,5 +1,7 @@
 package List;
 
+import List.DoublyLinkedList.Employee;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,6 +33,7 @@ public class MainArrayList {
 //        for (Employee employee: employeeArray) {
 //            System.out.println(employee);
 //        }
+//
 
         System.out.println(employeeList.contains(new Employee("Mary", "Smith", 22)));
         System.out.println(employeeList.indexOf(new Employee("John", "Doe", 4567)));

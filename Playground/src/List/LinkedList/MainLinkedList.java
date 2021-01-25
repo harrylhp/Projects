@@ -1,4 +1,4 @@
-package List;
+package List.LinkedList;
 
 public class MainLinkedList {
     public static void main(String[]args){
@@ -13,6 +13,7 @@ public class MainLinkedList {
         System.out.println("Size of list: " + EmployeeLinkedList.size);
 
         System.out.println();
+        System.out.println("Reversed Linked List");
         list.reverseLinkedList();
         list.printList();
 
