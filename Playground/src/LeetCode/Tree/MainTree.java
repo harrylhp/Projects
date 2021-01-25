@@ -1,84 +1,22 @@
 package LeetCode.Tree;
 
-import Tree.Tree;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainTree {
     public static void main(String[]args){
-        TreeNode root = new TreeNode(2);
-        root.left = new TreeNode(1);
-        root.right = new TreeNode(4);
-        root.right.left = new TreeNode(3);
-        root.right.right = new TreeNode(7);
-        root.right.right.left = new TreeNode(5);
-        root.right.right.right = new TreeNode(8);
+        TreeNode root = new TreeNode(1);
+        root.left = new TreeNode(2);
+        root.right = new TreeNode(3);
+        root.right.left = new TreeNode(4);
+        root.right.right = new TreeNode(5);
         // Tree
-        //       2
-        //     1    4
-        //        3   7
-        //           5  8
+        //       1
+        //     2   3
+        //    4 5
 
         List<Integer> list = inOrderTraversal(root);
         System.out.print("InOrder Traversal is " + list);
-
-        TreeNode root2 = new TreeNode(5);
-        root2.left = new TreeNode(2);
-        root2.right = new TreeNode(8);
-
-        TreeNode root3 = new TreeNode(5);
-        root3.left = new TreeNode(2);
-        root3.right = new TreeNode(3);
-
-        System.out.println();
-        System.out.println("Min is " + min(root));
-        System.out.println("Max is " + max(root));
-
-        if(isValidBST(root))
-            System.out.println("Valid BST 1");
-
-        if(isValidBST(root2))
-            System.out.println("Valid BST 2");
-
-        if(isValidBST(root3))
-            System.out.println("Valid BST 3");
-    }
-
-    public static boolean isValidBST(TreeNode root){
-        return validateLeftRight(root, null, null);
-    }
-
-    public static boolean validateLeftRight(TreeNode root, Integer min, Integer max){
-        if (root ==null)
-            return true;
-
-        if ((min!= null && root.val <= min) || (max!=null && root.val >=max))
-            return false;
-
-        return validateLeftRight(root.left, min, root.val) && validateLeftRight(root.right, root.val, max);
-
-    }
-
-
-    public static int min(TreeNode root){
-        if (root == null)
-            return Integer.MIN_VALUE;
-
-        if (root.left == null)
-            return root.val;
-        else
-            return min(root.left);
-    }
-
-    public static int max(TreeNode root){
-        if (root == null)
-            return Integer.MAX_VALUE;
-
-        if (root.right == null)
-            return root.val;
-        else
-            return max(root.right);
     }
 
     public static List<Integer> inOrderTraversal(TreeNode root) {

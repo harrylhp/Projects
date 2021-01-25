@@ -1,4 +1,4 @@
-package List.DoublyLinkedList;
+package List;
 
 public class EmployeeDoublyLinkedList {
     private EmployeeNode head;
