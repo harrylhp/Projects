@@ -12,8 +12,6 @@ public class Employee {
         this.id = id;
     }
 
-    //Add Comment
-
     public String getFirstName() {
         return firstName;
     }
