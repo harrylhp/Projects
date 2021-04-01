@@ -133,7 +133,7 @@ public class TreeNode {
         }
     }
 
-    // PostOrder 1 stack => hard to understand
+    // PostOrder 2 stacks => easier to understand
     public void traversePostOrderIterativeTwoStack(TreeNode root){
         LinkedList<TreeNode> stack = new LinkedList<TreeNode>();
         stack.push(root);
